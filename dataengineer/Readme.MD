@@ -5,16 +5,16 @@
 As a Data Engineer, you need to cleanse, organize, standardize, tranform and move data at scale.
 Perform hands-on exercises and in a few clicks you can standardize, transform, and move sales and customer data into a relational data warehouse.
 
-Setting up an enterprise level data movement infrastructure and then ingesting that data from a secure environment to a cloud repository can be challenging. As a Data Engineer, you need a simple point and click solution to move, discover, cleanse, standardize and transform data to support analytic applications. IBM Cloud Solutions with its DataWorks Forge as-a-Service solves this challenge by seamlessly connecting, transforming and ingesting the data into the secure IBM Cloud.
+Setting up an enterprise level data movement infrastructure and then ingesting that data from a secure environment to a cloud repository can be challenging. As a Data Engineer, you need a simple point and click solution to move, discover, cleanse, standardize and transform data to support analytic applications. IBM Cloud Solutions with its Data Connect as-a-Service solves this challenge by seamlessly connecting, transforming and ingesting the data into the secure IBM Cloud.
  >
- > The extremely intuitive and efficient DataWorks Forge service, with its wide collection of data stores connections, prepares and ingests the data to the IBM cloud with ease and robustness.
+ > The extremely intuitive and efficient Data Connect service, with its wide collection of data stores connections, prepares and ingests the data to the IBM cloud with ease and robustness.
  >
- > In this lab we will explore how a data engineer utilizes DataWorks Forge and other IBM Bluemix cloud services to easily host, connect, ingest and persist enterprise data on to the cloud.
+ > In this lab we will explore how a data engineer utilizes Data Connect and other IBM Bluemix cloud services to easily host, connect, ingest and persist enterprise data on to the cloud.
 
 Video of Lab Steps: https://youtu.be/655-6SPhkNI
 [<img src="https://github.com/ibmdataworks/datafirst/blob/master/datascientist/media/DE%20Video.png">](https://youtu.be/655-6SPhkNI)
 
-Lab Components: IBM Bluemix Data Connect (formerly DataWorks)
+Lab Components: IBM Bluemix Data Connect (formerly DataConnect)
 ===============================================
 
 1.  **Source Data Repository**: **Object Storage Service**
@@ -23,14 +23,14 @@ Lab Components: IBM Bluemix Data Connect (formerly DataWorks)
 
 2.  **Target Data Repository**: **dashDB Service**
 
-3.  **Transform and Migrate**: **DataWorks Service**
+3.  **Transform and Migrate**: **DataConnect Service**
 
 <img src="./media/image1.png" width="69" height="68" />
 
 Before You Begin
 ================
 
-1.  Download Lab-DataWorksForge.zip archive from the github.com location below and extract the two data files (GOProductDim, GOSalesFact) to your laptop:
+1.  Download Lab-DataConnectForge.zip archive from the github.com location below and extract the two data files (GOProductDim, GOSalesFact) to your laptop:
 
  > https://github.com/ibmdataworks/datafirst/tree/master/dataengineer
 
@@ -100,11 +100,11 @@ Step 2. Initialize Source Data Repository: Object Storage Service
  > "role": "admin" <br />
  > }
 
-9.  Copy the credentials by clicking on the blue square (<img src="./media/image4.png" width="30" height="36" />) on the top right corner of the window and paste it into a notepad (Windows) / textedit (Mac) / vi (Linux). This information will be needed later for use in DataWorks Forge to create and establish the connection to the object store.
+9.  Copy the credentials by clicking on the blue square (<img src="./media/image4.png" width="30" height="36" />) on the top right corner of the window and paste it into a notepad (Windows) / textedit (Mac) / vi (Linux). This information will be needed later for use in Data Connect to create and establish the connection to the object store.
 
- > From the credential details above, only the values from the following tokens ( as highlighted in blue) will be needed in DataWorks Forge to establish connection to the Object Store: "auth\_url", "projectId", "region", "userId", "password"
+ > From the credential details above, only the values from the following tokens ( as highlighted in blue) will be needed in Data Connect to establish connection to the Object Store: "auth\_url", "projectId", "region", "userId", "password"
 
-10.  The source data repository to be used with DataWorks Forge later is now ready. Let’s create a target data repository.
+10.  The source data repository to be used with Data Connect later is now ready. Let’s create a target data repository.
 
 11.  From the top of the browser page click on the “Catalog” option. This will take you back to the Bluemix dashboard catalog menu.
 
@@ -137,49 +137,49 @@ Step 3. Initialize Target Data Repository: dashDB Service
  > "password": "ANupNAirAjxy1" <br />
  > }
 
-5.  Copy the credentials by clicking on the blue square (<img src="./media/image4.png" width="30" height="36" />) on the top right corner of the window and paste it into a notepad (Windows) / textedit (Mac) / vi (Linux). This information will be needed later for use in DataWorks Forge to create and establish the connection to dashDB.
+5.  Copy the credentials by clicking on the blue square (<img src="./media/image4.png" width="30" height="36" />) on the top right corner of the window and paste it into a notepad (Windows) / textedit (Mac) / vi (Linux). This information will be needed later for use in Data Connect to create and establish the connection to dashDB.
 
- > From the credential details above, only the values from the following tokens ( as highlighted in blue) will be needed in DataWorks Forge to establish connection to dashDB: "host", "db", "username", "password"
+ > From the credential details above, only the values from the following tokens ( as highlighted in blue) will be needed in Data Connect to establish connection to dashDB: "host", "db", "username", "password"
  >
  > NOTE: You can also retrieve the connection information by Opening the dashDB console (Manage-&gt;Open from dashboard) and within the console clicking on “Connect-&gt; Connection information”. You get the information screen similar to the following:
  >
  > <img src="./media/image6.png" width="559" height="162" />
 
-6.  The target data repository to be used with DataWorks Forge later is now ready. Let’s work with DataWorks Forge to transform and migrate data.
+6.  The target data repository to be used with Data Connect later is now ready. Let’s work with Data Connect to transform and migrate data.
 
  > NOTE: Although we have created the database service, it is optional to port the source schema to this target database. More information about this in the next section.
 
 7.  From the top of the browser page click on the “Catalog” option. This will take you back to the Bluemix dashboard catalog menu.
 
-Step 4. Transform and Migrate Data: DataWorks Forge Service
+Step 4. Transform and Migrate Data: Data Connect Service
 ===================================================
 
 1.  From the Bluemix dashboard catalog menu search for “dataworks”
 
-2.  Click on the DataWorks Icon <img src="./media/image7.png" width="47" height="52" />
+2.  Click on the DataConnect Icon <img src="./media/image7.png" width="47" height="52" />
 
-3.  Choose the default pre-filled values in the fields (optionally rename the “Service name:” to DE-DataIngest-DataWorks), select the “Starter Pricing Plan” (default) and click “Create” button on the side panel.
+3.  Choose the default pre-filled values in the fields (optionally rename the “Service name:” to DE-DataIngest-DataConnect), select the “Starter Pricing Plan” (default) and click “Create” button on the side panel.
 
- > NOTE: Once the service is provisioned it will invoke the DataWorks Forge Service dashboard where you can explore additional resources like IBM DataWorks™ APIs, Learning Center, Discussion forums etc.
+ > NOTE: Once the service is provisioned it will invoke the Data Connect Service dashboard where you can explore additional resources like IBM DataConnect™ APIs, Learning Center, Discussion forums etc.
 
-4.  To launch the DataWorks Forge service just created, click the arrow icon (<img src="./media/image8.png" width="61" height="63" />) in the IBM DataWorks™ section on the provisioning dashboard. This brings you to the DataWorks Forge dashboard which looks like this:
+4.  To launch the Data Connect service just created, click the arrow icon (<img src="./media/image8.png" width="61" height="63" />) in the IBM DataConnect™ section on the provisioning dashboard. This brings you to the Data Connect dashboard which looks like this:
 
  > <img src="./media/image9.png"/>
 
-DataWorks Forge Service Introduction
+Data Connect Service Introduction
 ------------------------------------
 
  > <img src="./media/DE Image9.png"/>
  >
  > NOTE: The Bluemix Secure gateway can be used to retrieve data hosted in a secure enterprise environment through a secure network tunnel. Configuring a Secure Gateway service and connecting using a secure tunnel is a simple and intuitive process (the dashboard walks you through the steps). As it was indicated earlier, getting access to a data hosted in an enterprise infrastructure can be a compliance and privacy issue for this lab, we will be using a sample datasets hosted in the IBM Object Storage that would be used as a source data set. This doesn’t need the use of a secure gateway.
  >
- > The flow diagram for creating a data migration process in DataWorks Forge is as shown below: 
+ > The flow diagram for creating a data migration process in Data Connect is as shown below: 
 
 #Step 5. Create Data Connections
 
 ### Create Source Data Connection
 
-1.  From the DataWorks Forge dashboard click on “Tasks”-&gt;““Create Connection”
+1.  From the Data Connect dashboard click on “Tasks”-&gt;““Create Connection”
 
  > This will take you to the list of all available connection drivers.
 
@@ -213,7 +213,7 @@ DataWorks Forge Service Introduction
 
 ### Create Target Data Connection
 
-1.  From the DataWorks Forge dashboard click on “Tasks”-&gt;“Create Connection”
+1.  From the Data Connect dashboard click on “Tasks”-&gt;“Create Connection”
 
  > This will take you to the list of all available connection drivers.
 
@@ -246,7 +246,7 @@ DataWorks Forge Service Introduction
 Create Data Flow (Activity)
 ---------------------------
 
-1.  From the DataWorks Forge dashboard click on “Tasks”-&gt;“Refine and Copy”
+1.  From the Data Connect dashboard click on “Tasks”-&gt;“Refine and Copy”
 
 2.  Click and select the source database: SourceDB
 
@@ -305,7 +305,7 @@ Create Data Flow (Activity)
 Validate Data Flow Run Activity
 -------------------------------
 
-1.  From the DataWorks Forge dashboard click on “Browse”-&gt;“Activities”
+1.  From the Data Connect dashboard click on “Browse”-&gt;“Activities”
 
 2.  Click on the three dots (<img src="./media/image19.png" width="17" height="37" />) on the right-top corner for the activity titled “LoadDataAsIs”. This will pop up additional sub-activity icons
 
@@ -324,7 +324,7 @@ Validate Migrated Data
 
 1.  Go to the main Bluemix portal and click on DASHBOARD (Top of the browser)
 
- > NOTE: You may already have a browser tab open from where you invoked the DataWorks Forge service (<img src="./media/image27.png" width="278" height="42" />). Go to that tab and click on <img src="./media/image28.png" width="121" height="28" />. This will take you back to the provisioned services dashboard.
+ > NOTE: You may already have a browser tab open from where you invoked the Data Connect service (<img src="./media/image27.png" width="278" height="42" />). Go to that tab and click on <img src="./media/image28.png" width="121" height="28" />. This will take you back to the provisioned services dashboard.
 
 2.  Under the Services section on this browser page click on the dashDB service that was created in section titled “Initialize Target Data Repository: dashDB Service “.
 
@@ -355,7 +355,7 @@ Delete All Provisioned Services (Optional)
 
  > NOTE: You may already have a browser tab open from where you invoked the dashDB service (<img src="./media/image27.png" width="278" height="42" />). Go to that tab and click on <img src="./media/image28.png" width="121" height="28" />. This will take you back to the provisioned services dashboard.
 
-2.  Under the Services section you will see the three services you had created (Object Storage, DataWorks Forge and dashDB)
+2.  Under the Services section you will see the three services you had created (Object Storage, Data Connect and dashDB)
 
 3.  To delete the service click on the three dots (<img src="./media/image19.png" width="17" height="37" />) under the actions column and click “Delete Service”. This will pop up a confirmation dialog box that says:
 
